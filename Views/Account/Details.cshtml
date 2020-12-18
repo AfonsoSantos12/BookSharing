@@ -1,0 +1,42 @@
+@model Microsoft.AspNetCore.Identity.IdentityUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>Details</h1>
+
+<div class="row">
+    <div class="col-md-6">
+            <div>
+            <dl>
+
+            <dt>User Id</dt>
+            <dl>@Model.Id</dl>
+            
+            <dt>UserName</dt>
+            <dl>@Model.UserName</dl>
+
+            <dt>Roles</dt>
+            <dl><ul>@foreach (var item in ViewBag.UserRoles)
+            {
+             <li>@item</li>   
+            }</ul></dl>
+
+            </dl>
+
+            </div>
+            <div>
+                <button class="btn btn-danger">Delete</button>
+                <a asp-action="Index" asp-controller="Role" class="btn btn-secondary">Cancel</a>
+
+    </div>
+</div>
+
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

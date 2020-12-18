@@ -1,0 +1,32 @@
+@model List<BookSharing.ViewModels.ManageUserRolesViewModel>
+
+@{
+    ViewBag.Title = "Manage User";
+}
+
+<h1>Manage User</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="ManageUserRoles" asp-controller="Account" method="POST">
+            <input type ="hidden" value="ViewBag.UserId" name="Id">
+            <div class="form group">
+                @for (int i =0;i <Model.Count();i++)
+                {
+                    <input type="hidden" asp-for="@Model[i].RoleId" value="@Model[i].RoleId">
+                    <input asp-for="@Model[i].RoleName" value="@Model[i].RoleName">
+                    if(Model[i].IsSelected){
+                        <input type="checkbox" asp-for="@Model[i].IsSelected" class="form-check-input" checked>
+                    }else{
+                        <input type="checkbox" asp-for="@Model[i].IsSelected" class="form-check-input" >
+                    }
+                    <span>@Model[i].RoleName</span>
+                }
+            </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a asp-action="ListAllUsers" asp-controller="Account" class="btn btn-secondary">Cancel</a>
+</form>
+    </div>
+</div>
+

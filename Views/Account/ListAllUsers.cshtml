@@ -1,0 +1,35 @@
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+@{
+    ViewBag.Title = "ListAllUsers";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                <a asp-action="Details" asp-controller="Account"  asp-route-id="@item.Id">View</a> |
+                <a asp-action="ManageUsersRoles" asp-controller="Account"  asp-route-id="item.Id">Manage Roles</a> |
+                <a asp-action="Remvove" asp-controller="Account" asp-route-id="item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

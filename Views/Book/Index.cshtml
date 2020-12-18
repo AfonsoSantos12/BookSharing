@@ -1,0 +1,39 @@
+@using Microsoft.AspNetCore.Identity;
+
+
+@{
+    ViewBag.Title = "Books";
+}
+<h1>List All Books</h1>
+
+@if (Model.Any())
+{
+    <a asp-action="Register" asp-controller="Role" class="btn btn-primary mb-2 mt-2">Add New Book</a>
+
+    <div>
+        @foreach (var item in Model)
+        {
+            <div class ="card mb-2">
+                <div class="card-header">
+                <span>Book ID: @item.BookModelId</span>
+            </div>
+            <div class ="card-body">
+                <h5 class="card-title">Book Name: @item.Name</h5>
+                <h5 class="card-title">Book Autor: @item.Autor</h5>
+                <h5 class="card-title">Book Ano: @item.Ano</h5>
+                <h5 class="card-title">Book Genero: @item.Genero</h5>
+            </div>
+            
+            <div class ="card-footer">
+                <div class= "row">
+                    <a asp-action="EditBook" asp-controller="Book" class ="btn btn-primary mr-1" asp-route-id="@item.Id">Edit</a>
+                    <form asp-action="RemoveBook" asp-controller="Book" asp-route-itemid="@item.Id" method="POST">
+                        <button type ="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+
+            </div>
+            </div>
+        }
+    </div>
+}

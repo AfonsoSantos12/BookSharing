@@ -1,0 +1,35 @@
+@model Microsoft.AspNetCore.Identity.IdentityUser
+
+@{
+    ViewBag.Title = "Remove User";
+}
+
+<h1>Delete User</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Remove" asp-controller="Account" method="POST">
+            <div>
+            <dl>
+
+            <dt>User Id</dt>
+            <dl>@Model.Id</dl>
+            
+            <dt>UserName</dt>
+            <dl>@Model.UserName</dl>
+            </dl>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a asp-action="Index" asp-controller="Role" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
